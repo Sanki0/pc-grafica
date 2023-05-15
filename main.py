@@ -130,7 +130,8 @@ def upload():
 def prepare_dataset():
     images = []
     digits = []
-    for digit in range(10):
+    folderNames = ["U", "N", "I"]
+    for digit in folderNames:
       filelist=glob.glob('{}/*.png'.format(digit))
       images_read = io.concatenate_images(io.imread_collection(filelist))
       images_read = images_read[:,:,:,3]
@@ -151,7 +152,8 @@ def download_y():
     return send_file('./y.npy')
 
 if __name__ == "__main__":
-    for i in range(10):
+    folderNames = ["U", "N", "I"]
+    for i in folderNames:
         if not os.path.exists(str(i)):
             os.mkdir(str(i))
     #app.run(debug=False, host="0.0.0.0", port=8000)
