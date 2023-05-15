@@ -133,7 +133,7 @@ def prepare_dataset():
     for digit in range(3):
       filelist=glob.glob('{}/*.png'.format(digit))
       images_read = np.array([io.imread(fname) for fname in filelist])
-      images_read = images_read[:,:,:,3]
+      images_read = images_read.reshape(images_read.shape[0], -1)
       digits_read = np.array([digit]*images_read.shape[0])
       images.append(images_read)
       digits.append(digits_read)
