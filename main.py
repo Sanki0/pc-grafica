@@ -26,10 +26,10 @@ main_html = """
       ctx = document.getElementById('myCanvas').getContext("2d");
 
 
-      numero = getRndInteger(0, 10);
+      letra = getRandomLetter();
 
-      document.getElementById('mensaje').innerHTML  = 'Dibujando un ' + numero;
-      document.getElementById('numero').value = numero;
+      document.getElementById('mensaje').innerHTML  = 'Dibujando un ' + letra;
+      document.getElementById('numero').value = letra;
 
       $('#myCanvas').mousedown(function (e) {
           mousePressed = true;
@@ -130,7 +130,7 @@ def upload():
 def prepare_dataset():
     images = []
     digits = []
-    for digit in range(10):
+    for digit in range(3):
       filelist=glob.glob('{}/*.png'.format(digit))
       images_read = io.concatenate_images(io.imread_collection(filelist))
       images_read = images_read[:,:,:,3]
@@ -151,7 +151,7 @@ def download_y():
     return send_file('./y.npy')
 
 if __name__ == "__main__":
-    for i in range(10):
+    for i in range(3):
         if not os.path.exists(str(i)):
             os.mkdir(str(i))
     #app.run(debug=False, host="0.0.0.0", port=8000)
